@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: course-enrollment-system
+  
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: true
+    open-in-view: false
+  
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changelog-master.xml
+  
+  datasource:
+    hikari:
+      minimum-idle: 1
+      connection-timeout: 60000
+      pool-name: SystemPool
+      leak-detection-threshold: 10000
+      idle-timeout: 120000
+    type: com.zaxxer.hikari.HikariDataSource
+  
+  docker:
+    compose:
+      enabled: true
+      lifecycle-management: start-only
