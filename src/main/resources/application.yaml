@@ -29,3 +29,7 @@ spring:
     compose:
       enabled: true
       lifecycle-management: start-only
+
+policy:
+  url: http://localhost:8081
+  timeout: 2s
