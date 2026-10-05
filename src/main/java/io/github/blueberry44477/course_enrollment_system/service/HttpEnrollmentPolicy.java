@@ -13,13 +13,13 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 
 public class HttpEnrollmentPolicy implements EnrollmentPolicy {
-    private final URI wiremockUrl;
+    private final URI url;
     private final Duration timeout;
     private final HttpClient httpClient;
     private final ObjectMapper objectMapper;
 
-    public HttpEnrollmentPolicy(URI wiremockUrl, Duration timeout) {
-        this.wiremockUrl = wiremockUrl;
+    public HttpEnrollmentPolicy(URI url, Duration timeout) {
+        this.url = url;
         this.timeout = timeout;
         this.httpClient = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.NEVER)
@@ -33,7 +33,7 @@ public class HttpEnrollmentPolicy implements EnrollmentPolicy {
         try {
             String jsonBody = String.format("{\"studentId\":%d,\"courseId\":%d}", student.getId(), course.getId());
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(wiremockUrl.resolve("/enrollment-policy"))
+                    .uri(url.resolve("/enrollment-policy"))
                     .timeout(timeout)
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(jsonBody))

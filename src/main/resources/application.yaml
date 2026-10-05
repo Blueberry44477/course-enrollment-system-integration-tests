@@ -31,5 +31,5 @@ spring:
       lifecycle-management: start-only
 
 policy:
-  url: http://localhost:8081
+  url: http://some_real_service
   timeout: 2s
