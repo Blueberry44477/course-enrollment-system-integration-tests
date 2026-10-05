@@ -28,7 +28,7 @@ spring:
   docker:
     compose:
       enabled: true
-      lifecycle-management: start-only
+      lifecycle-management: start-and-stop
 
 policy:
   url: http://some_real_service
